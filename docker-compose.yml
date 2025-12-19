@@ -156,7 +156,7 @@ services:
       context: ./ui
       args:
         # Set this to the url the api should be accessed at: http(s)://<your-ip-or-domain>:8080
-        API: http://128.253.41.110:8080
+        API: https://api-testnet.ergoplatform.com
         # Name of the network (mainnet, testnet, devnet, ...)
         LABEL: "TestNet"
     links:
