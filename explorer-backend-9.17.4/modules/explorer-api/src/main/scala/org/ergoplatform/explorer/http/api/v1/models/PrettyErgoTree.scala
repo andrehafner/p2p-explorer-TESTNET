@@ -1,7 +1,6 @@
 package org.ergoplatform.explorer.http.api.v1.models
 
 import org.ergoplatform.explorer.HexString
-import sigmastate.PrettyPrintErgoTree
 import sigmastate.lang.exceptions.SerializerException
 import sigmastate.serialization.ErgoTreeSerializer.DefaultSerializer
 
@@ -18,8 +17,8 @@ object PrettyErgoTree {
       val ergoTree = DefaultSerializer.deserializeErgoTree(h.bytes)
       ergoTree.root match {
         case Left(_) => Left(PrettyErgoTreeError.UnparsedErgoTree)
-        case Right(value) => 
-          val script = PrettyPrintErgoTree.prettyPrint(value, width = 160)
+        case Right(value) =>
+          val script = value.toString
           val constants = ergoTree.constants.zipWithIndex.map { case (c, i) => s"$i: ${c.value}" }.mkString("\n")
           Right(ErgoTreeHuman(constants, script))
       }
