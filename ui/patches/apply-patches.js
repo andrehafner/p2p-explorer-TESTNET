@@ -63,7 +63,35 @@ appContent = appContent.replace(
 fs.writeFileSync(appPath, appContent);
 console.log('  Updated app.tsx with Javanese language registration');
 
-// 4. Add new dropdowns to navbar-menu component
+// 4. Register Javanese in connected-intl-provider.ts (THIS IS THE KEY FILE!)
+console.log('Registering Javanese in connected-intl-provider.ts...');
+const intlProviderPath = '/app/src/containers/connected-intl-provider/connected-intl-provider.ts';
+let intlContent = fs.readFileSync(intlProviderPath, 'utf8');
+
+// Add import for jv translations (after tr import)
+if (!intlContent.includes("import jvKeys from")) {
+  intlContent = intlContent.replace(
+    "import trKeys from '../../locales/tr/translations.json';",
+    "import trKeys from '../../locales/tr/translations.json';\nimport jvKeys from '../../locales/jv/translations.json';"
+  );
+}
+
+// Add jv to messages object
+intlContent = intlContent.replace(
+  "tr: flatJSONKeys(trKeys),\n};",
+  "tr: flatJSONKeys(trKeys),\n  jv: flatJSONKeys(jvKeys),\n};"
+);
+
+// Alternative pattern without trailing comma
+intlContent = intlContent.replace(
+  "tr: flatJSONKeys(trKeys)\n};",
+  "tr: flatJSONKeys(trKeys),\n  jv: flatJSONKeys(jvKeys),\n};"
+);
+
+fs.writeFileSync(intlProviderPath, intlContent);
+console.log('  Updated connected-intl-provider.ts with Javanese');
+
+// 5. Add new dropdowns to navbar-menu component
 console.log('Adding Other Explorers and Community dropdowns...');
 const navbarPath = '/app/src/components/navbar-menu/navbar-menu.component.tsx';
 let navbarContent = fs.readFileSync(navbarPath, 'utf8');
