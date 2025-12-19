@@ -15,6 +15,10 @@ export const environmentDefault: IEnvironment = {
             name: '_name_',
             url: '_api_',
         },
+        {
+            name: 'Mainnet',
+            url: 'https://explorer.ergoplatform.com',
+        },
     ],
     isLoggerEnabled: true,
 };

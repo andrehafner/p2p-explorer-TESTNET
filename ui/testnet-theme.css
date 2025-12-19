@@ -1,0 +1,85 @@
+/* Ergo TestNet Orange Theme Override */
+/* Primary Ergo Orange: #FF5E18 */
+
+:root {
+  --primary-color: #FF5E18 !important;
+  --primary-color-rgb: 255, 94, 24 !important;
+  --accent-color: #FF5E18 !important;
+}
+
+/* Override Bootstrap/Material primary colors */
+.btn-primary,
+.bg-primary {
+  background-color: #FF5E18 !important;
+  border-color: #FF5E18 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #E54D0A !important;
+  border-color: #E54D0A !important;
+}
+
+.text-primary {
+  color: #FF5E18 !important;
+}
+
+/* Header/Navigation styling */
+.header,
+.navbar,
+nav.main-nav,
+.app-header {
+  background-color: #FF5E18 !important;
+}
+
+/* Links with primary color */
+a.primary-link,
+.nav-link.active {
+  color: #FF5E18 !important;
+}
+
+/* Progress bars, loaders */
+.progress-bar,
+.loader {
+  background-color: #FF5E18 !important;
+}
+
+/* Badges and labels */
+.badge-primary,
+.label-primary {
+  background-color: #FF5E18 !important;
+}
+
+/* Focus states */
+.form-control:focus {
+  border-color: #FF5E18 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 94, 24, 0.25) !important;
+}
+
+/* Selection highlight */
+::selection {
+  background-color: rgba(255, 94, 24, 0.3);
+}
+
+/* TestNet indicator banner */
+body::before {
+  content: "TESTNET";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #FF5E18, #FF7A3D);
+  color: white;
+  text-align: center;
+  padding: 4px 0;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 2px;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Adjust body to account for TestNet banner */
+body {
+  padding-top: 28px !important;
+}

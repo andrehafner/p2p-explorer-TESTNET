@@ -6,6 +6,10 @@ export const environmentProd: IEnvironment = {
             name: '_name_',
             url: '_api_',
         },
+        {
+            name: 'Mainnet',
+            url: 'https://explorer.ergoplatform.com',
+        },
     ],
     isLoggerEnabled: false,
 };
