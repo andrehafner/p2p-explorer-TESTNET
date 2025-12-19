@@ -158,13 +158,13 @@ services:
       context: ./ui
       args:
         # Set this to the url the api should be accessed at: http(s)://<your-ip-or-domain>:8080
-        API: http://yourexternalIP:8080
+        API: http://128.253.41.110:8080
         # Name of the network (mainnet, testnet, devnet, ...)
-        LABEL: "Mainnet"
+        LABEL: "TestNet"
     links:
       - "api"
     ports:
-      - 3000:3000
+      - 3002:3000
     restart: unless-stopped
     logging:
       options:
@@ -187,9 +187,9 @@ services:
       # database user name
       DB_USER_NAME: ergo
       # ergo node address and port
-      ERGO_NODE_ADDRESS: http://172.17.0.1:9053
+      ERGO_NODE_ADDRESS: http://128.253.41.110:9052
       # optional: MAINNET or TESTNET
-      NETWORK: MAINNET
+      NETWORK: TESTNET
       # optional: redis host address
       REDIS_HOST: redis
       # optional: redis host port

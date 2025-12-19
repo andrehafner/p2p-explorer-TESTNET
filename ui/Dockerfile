@@ -11,12 +11,15 @@ ARG API
 ARG LABEL
 COPY environment.default.ts /app/src/config/
 COPY environment.prod.ts /app/src/config/
+COPY testnet-theme.css /app/public/testnet-theme.css
 # Set configured api in config templates
 RUN sed -i "s|_api_|${API}|g" /app/src/config/environment.default.ts && \
     sed -i "s|_api_|${API}|g" /app/src/config/environment.prod.ts && \
-    # Set configured network name in config templates   
+    # Set configured network name in config templates
     sed -i "s|_name_|${LABEL}|g" /app/src/config/environment.default.ts && \
-    sed -i "s|_name_|${LABEL}|g" /app/src/config/environment.prod.ts
+    sed -i "s|_name_|${LABEL}|g" /app/src/config/environment.prod.ts && \
+    # Inject TestNet theme CSS link into index.html
+    sed -i 's|</head>|<link rel="stylesheet" href="/testnet-theme.css"></head>|g' /app/public/index.html
 # Build
 RUN npm i --location=global corepack && \
     yarn && \
