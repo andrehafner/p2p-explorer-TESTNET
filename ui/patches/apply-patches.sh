@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Apply custom patches to the explorer-frontend
 # This script is run during Docker build after the frontend source is downloaded
 
