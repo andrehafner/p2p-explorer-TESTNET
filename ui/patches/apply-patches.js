@@ -35,7 +35,35 @@ if (enData.common && enData.common.navigation) {
   console.log('  Updated en/translations.json with navigation keys');
 }
 
-// 3. Add new dropdowns to navbar-menu component
+// 3. Register Javanese language in app.tsx
+console.log('Registering Javanese language in app.tsx...');
+const appPath = '/app/src/app.tsx';
+let appContent = fs.readFileSync(appPath, 'utf8');
+
+// Add import for jv locale data (after tr import)
+if (!appContent.includes("import jv from 'react-intl/locale-data/jv'")) {
+  appContent = appContent.replace(
+    "import tr from 'react-intl/locale-data/tr';",
+    "import tr from 'react-intl/locale-data/tr';\nimport jv from 'react-intl/locale-data/jv';"
+  );
+}
+
+// Add 'jv' to languages array
+appContent = appContent.replace(
+  "const languages = ['en', 'ru', 'id', 'tr'];",
+  "const languages = ['en', 'ru', 'id', 'tr', 'jv'];"
+);
+
+// Add jv to addLocaleData call
+appContent = appContent.replace(
+  "addLocaleData([...en, ...ru, ...id, ...tr]);",
+  "addLocaleData([...en, ...ru, ...id, ...tr, ...jv]);"
+);
+
+fs.writeFileSync(appPath, appContent);
+console.log('  Updated app.tsx with Javanese language registration');
+
+// 4. Add new dropdowns to navbar-menu component
 console.log('Adding Other Explorers and Community dropdowns...');
 const navbarPath = '/app/src/components/navbar-menu/navbar-menu.component.tsx';
 let navbarContent = fs.readFileSync(navbarPath, 'utf8');
