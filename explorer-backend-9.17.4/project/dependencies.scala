@@ -142,7 +142,7 @@ object dependencies {
     Enums
 
   lazy val api: List[ModuleID] = Monix ++
-    List("org.scorexfoundation" %% "sigma-state" % "4.0.6-31-e2e0ffa1-SNAPSHOT")
+    List("org.scorexfoundation" %% "sigma-state" % "5.0.6")
 
   lazy val grabber: List[ModuleID] = Monix
 
