@@ -12,6 +12,10 @@ ARG LABEL
 COPY environment.default.ts /app/src/config/
 COPY environment.prod.ts /app/src/config/
 COPY testnet-theme.css /app/public/testnet-theme.css
+# Copy patches for Javanese translations and custom dropdowns
+COPY patches/ /patches/
+COPY locales/ /patches/
+RUN chmod +x /patches/apply-patches.sh && /patches/apply-patches.sh
 # Set configured api in config templates
 RUN sed -i "s|_api_|${API}|g" /app/src/config/environment.default.ts && \
     sed -i "s|_api_|${API}|g" /app/src/config/environment.prod.ts && \
